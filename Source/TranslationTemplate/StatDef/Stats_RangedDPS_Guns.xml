@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: average ranged DPS -->
+  <RangedWeapon_AverageDPS.label>average ranged DPS</RangedWeapon_AverageDPS.label>
+  <!-- EN: Average potential damage dealt per second in ranged combat at the optimal range of this weapon.\n\nThis stat doesn't factor in the shooter's skill or target defenses like cover and armor, so the actual value will be lower. -->
+  <RangedWeapon_AverageDPS.description>Average potential damage dealt per second in ranged combat at the optimal range of this weapon.
+
+This stat doesn't factor in the shooter's skill or target defenses like cover and armor, so the actual value will be lower.</RangedWeapon_AverageDPS.description>
+  <!-- EN: max ranged DPS -->
+  <RangedWeapon_MaxDPS.label>max ranged DPS</RangedWeapon_MaxDPS.label>
+  <!-- EN: Maximum possible damage dealt per second in ranged combat, assuming all shots were to hit.  This is the maximum possible DPS you could get out of this gun in a target-rich environment.\n\nThis stat doesn't factor in accuracy or target defenses like cover and armor, so the actual value will be lower. -->
+  <RangedWeapon_MaxDPS.description>Maximum possible damage dealt per second in ranged combat, assuming all shots were to hit.  This is the maximum possible DPS you could get out of this gun in a target-rich environment.
+
+This stat doesn't factor in accuracy or target defenses like cover and armor, so the actual value will be lower.</RangedWeapon_MaxDPS.description>
+  <!-- EN: ranged DPS -->
+  <RangedWeapon_PawnDPS.label>ranged DPS</RangedWeapon_PawnDPS.label>
+  <!-- EN: Average damage per second this pawn can deal in ranged combat, factoring in both the weapon and this pawn's shooting accuracy.\n\nThis stat doesn't factor in target defenses like cover and armor, but is accurate for unarmored targets not in cover. -->
+  <RangedWeapon_PawnDPS.description>Average damage per second this pawn can deal in ranged combat, factoring in both the weapon and this pawn's shooting accuracy.
+
+This stat doesn't factor in target defenses like cover and armor, but is accurate for unarmored targets not in cover.</RangedWeapon_PawnDPS.description>
+</LanguageData>

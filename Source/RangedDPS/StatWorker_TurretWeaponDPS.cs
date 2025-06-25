@@ -25,7 +25,7 @@ public class StatWorker_TurretWeaponDPS : StatWorker_TurretDPSBase
             weaponStats.AccuracyLong
         }.Max();
 
-        return weaponStats.GetRawDPS().Average * Math.Min(bestAccuracy, 1f);
+        return weaponStats.GetRawDps().Average * Math.Min(bestAccuracy, 1f);
     }
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense,
@@ -53,6 +53,6 @@ public class StatWorker_TurretWeaponDPS : StatWorker_TurretDPSBase
         }
 
         RangedWeaponStats weaponStats = GetTurretStats(req);
-        return DPSRangeBreakdown(weaponStats);
+        return DpsRangeBreakdown(weaponStats);
     }
 }

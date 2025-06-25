@@ -51,7 +51,7 @@ public class StatWorker_RangedDPSBase : StatWorker
     /// <returns>A string providing a breakdown of the performance of the given weapon at various ranges.</returns>
     /// <param name="gun">The gun to caluclate a breakdown for.</param>
     /// <param name="shooter">(Optional) The shooter (pawn or turret) using the weapon.</param>
-    protected static string DPSRangeBreakdown(RangedWeaponStats gun, Thing shooter = null)
+    protected static string DpsRangeBreakdown(RangedWeaponStats gun, Thing shooter = null)
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.AppendLine("StatsReport_RangedDPSAccuracy".Translate());
@@ -59,7 +59,7 @@ public class StatWorker_RangedDPSBase : StatWorker
         // Min Range
         var minRange = Math.Max(gun.MinRange, 1f);
         var minRangeHitChance = gun.GetAdjustedHitChanceFactor(minRange, shooter);
-        var minRangeDps = gun.GetAdjustedDPS(minRange, shooter);
+        var minRangeDps = gun.GetAdjustedDps(minRange, shooter);
         stringBuilder.AppendLine(FormatValueRangeString(minRange, minRangeDps, minRangeHitChance));
 
         // Ranges between Min - Max, in steps of 5
@@ -67,13 +67,13 @@ public class StatWorker_RangedDPSBase : StatWorker
         for (var range = startRange; range < gun.MaxRange; range += 5)
         {
             var hitChance = gun.GetAdjustedHitChanceFactor(range, shooter);
-            var dps = gun.GetAdjustedDPS(range, shooter);
+            var dps = gun.GetAdjustedDps(range, shooter);
             stringBuilder.AppendLine(FormatValueRangeString(range, dps, hitChance));
         }
 
         // Max Range
         var maxRangeHitChance = gun.GetAdjustedHitChanceFactor(gun.MaxRange, shooter);
-        var maxRangeDps = gun.GetAdjustedDPS(gun.MaxRange, shooter);
+        var maxRangeDps = gun.GetAdjustedDps(gun.MaxRange, shooter);
         stringBuilder.AppendLine(FormatValueRangeString(gun.MaxRange, maxRangeDps, maxRangeHitChance));
 
         return stringBuilder.ToString();

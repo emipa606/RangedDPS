@@ -14,7 +14,7 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
         }
 
         // Don't show DPS for unloaded mortars
-        var comp = GetTurretWeapon(req).TryGetComp<CompChangeableProjectile>();
+        var comp = getTurretWeapon(req).TryGetComp<CompChangeableProjectile>();
         return comp == null || comp.Loaded;
     }
 
@@ -28,14 +28,14 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
         return (req.Def as ThingDef)?.GetConcreteExample() as Building_TurretGun;
     }
 
-    protected static Thing GetTurretWeapon(StatRequest req)
+    private static Thing getTurretWeapon(StatRequest req)
     {
         return GetTurret(req).gun;
     }
 
     protected static TurretStats GetTurretStats(StatRequest req)
     {
-        return GetTurretStats(GetTurret(req));
+        return getTurretStats(GetTurret(req));
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
     /// </summary>
     /// <returns>The stats of the passed-in turret.</returns>
     /// <param name="turret">The turret to get stats for.</param>
-    protected static TurretStats GetTurretStats(Building_TurretGun turret)
+    private static TurretStats getTurretStats(Building_TurretGun turret)
     {
         if (turret != null)
         {

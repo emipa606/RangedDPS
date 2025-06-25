@@ -6,8 +6,8 @@ namespace RangedDPS.StatUtilities;
 
 public class TurretStats(Building_TurretGun turret) : RangedWeaponStats(turret)
 {
-    public readonly CompRefuelable compRefuelable = turret.TryGetComp<CompRefuelable>();
-    public readonly Building_TurretGun turret = turret;
+    private readonly CompRefuelable compRefuelable = turret.TryGetComp<CompRefuelable>();
+    public readonly Building_TurretGun Turret = turret;
 
     /// <summary>
     ///     Gets a value indicating whether this turret uses fuel (barrel refurbishing, ammo, etc.).
@@ -19,7 +19,7 @@ public class TurretStats(Building_TurretGun turret) : RangedWeaponStats(turret)
     ///     Gets the amount of shots this turret can shoot per unit of fuel
     /// </summary>
     /// <value>The fuel per shot, or float.MaxValue if the turret does not use fuel.</value>
-    public float ShotsPerFuel => !NeedsFuel ? float.MaxValue : compRefuelable.Props.FuelMultiplierCurrentDifficulty;
+    private float ShotsPerFuel => !NeedsFuel ? float.MaxValue : compRefuelable.Props.FuelMultiplierCurrentDifficulty;
 
     /// <summary>
     ///     Gets the amount of fuel used per point of damage dealt by the turret (assuming the shot hits).
@@ -35,7 +35,7 @@ public class TurretStats(Building_TurretGun turret) : RangedWeaponStats(turret)
                 return float.MaxValue;
             }
 
-            return ShotsPerFuel * shotDamage;
+            return ShotsPerFuel * ShotDamage;
         }
     }
 
@@ -46,7 +46,7 @@ public class TurretStats(Building_TurretGun turret) : RangedWeaponStats(turret)
     /// <param name="range">The range of the shot.</param>
     public FloatRange GetAdjustedDamagePerFuel(float range)
     {
-        return new FloatRange(DamagePerFuel * Math.Min(GetAdjustedHitChanceFactor(range, turret), 1f),
-            DamagePerFuel * Math.Min(GetAdjustedHitChanceFactor(range, turret), 1f));
+        return new FloatRange(DamagePerFuel * Math.Min(GetAdjustedHitChanceFactor(range, Turret), 1f),
+            DamagePerFuel * Math.Min(GetAdjustedHitChanceFactor(range, Turret), 1f));
     }
 }

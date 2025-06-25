@@ -7,17 +7,17 @@ namespace RangedDPS.StatUtilities;
 
 public class RangedWeaponStats
 {
-    public readonly float cooldown;
-    public readonly VerbProperties shootVerb;
+    private readonly float cooldown;
+    private readonly VerbProperties shootVerb;
 
-    public readonly int shotDamage;
-    public readonly FloatRange warmup;
-    public readonly Thing weapon;
+    protected readonly int ShotDamage;
+    private readonly FloatRange warmup;
+    private readonly Thing weapon;
 
     public RangedWeaponStats(Thing weapon)
     {
         this.weapon = weapon;
-        shootVerb = GetShootVerb(weapon.def);
+        shootVerb = getShootVerb(weapon.def);
 
         // Get the damage from the loaded projectile if the weapon is loadable or the default projectile otherwise
         // TODO - check if it's even possible for regular weapons to have this comp
@@ -26,15 +26,15 @@ public class RangedWeaponStats
 
         // Default to zero damage if we can't find a projectile.
         // Not an error as unloaded mortars don't have projectiles
-        shotDamage = projectile?.GetDamageAmount(weapon) ?? 0;
+        ShotDamage = projectile?.GetDamageAmount(weapon) ?? 0;
         warmup = new FloatRange(shootVerb.warmupTime, shootVerb.warmupTime);
         cooldown = weapon.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
     }
 
-    public RangedWeaponStats(Building_TurretGun turret)
+    protected RangedWeaponStats(Building_TurretGun turret)
     {
         weapon = turret.gun;
-        shootVerb = GetShootVerb(weapon.def);
+        shootVerb = getShootVerb(weapon.def);
 
         // Get the damage from the loaded projectile if the weapon is loadable or the default projectile otherwise
         var projectile = weapon.TryGetComp<CompChangeableProjectile>()?.Projectile?.projectile
@@ -42,7 +42,7 @@ public class RangedWeaponStats
 
         // Default to zero damage if we can't find a projectile.
         // Not an error as unloaded mortars don't have projectiles
-        shotDamage = projectile?.GetDamageAmount(weapon) ?? 0;
+        ShotDamage = projectile?.GetDamageAmount(weapon) ?? 0;
 
         // Note that turrets completely ignore the warmup and cooldown stat of the weapon
         warmup = turret.def.building.turretBurstWarmupTime;
@@ -53,8 +53,8 @@ public class RangedWeaponStats
             : turret.AttackVerb.verbProps.defaultCooldownTime;
     }
 
-    public int BurstShotCount => shootVerb.burstShotCount;
-    public int BurstDelayTicks => shootVerb.ticksBetweenBurstShots;
+    private int BurstShotCount => shootVerb.burstShotCount;
+    private int BurstDelayTicks => shootVerb.ticksBetweenBurstShots;
 
     public float MinRange => shootVerb.minRange;
     public float MaxRange => shootVerb.range;
@@ -64,7 +64,7 @@ public class RangedWeaponStats
     public float AccuracyMedium => weapon.GetStatValue(StatDefOf.AccuracyMedium);
     public float AccuracyLong => weapon.GetStatValue(StatDefOf.AccuracyLong);
 
-    protected VerbProperties GetShootVerb(ThingDef thingDef)
+    private static VerbProperties getShootVerb(ThingDef thingDef)
     {
         // Note - the game uses the first shoot verb and ignores the rest for whatever reason.  Do the same here
         var verb = (from v in thingDef.Verbs
@@ -88,7 +88,7 @@ public class RangedWeaponStats
     ///     (Optional) The Pawn wielding the weapon, or null if we're just looking at a weapon in the
     ///     abstract
     /// </param>
-    public FloatRange GetFullCycleTime(Pawn shooter = null)
+    private FloatRange getFullCycleTime(Pawn shooter = null)
     {
         var aimFactor = shooter?.GetStatValue(StatDefOf.AimingDelayFactor) ?? 1f;
         return new FloatRange(
@@ -105,10 +105,10 @@ public class RangedWeaponStats
     ///     (Optional) The Pawn wielding the weapon, or null if we're just looking at a weapon in the
     ///     abstract
     /// </param>
-    public FloatRange GetRawDPS(Pawn shooter = null)
+    public FloatRange GetRawDps(Pawn shooter = null)
     {
-        return new FloatRange(shotDamage * BurstShotCount / GetFullCycleTime(shooter).max,
-            shotDamage * BurstShotCount / GetFullCycleTime(shooter).min);
+        return new FloatRange(ShotDamage * BurstShotCount / getFullCycleTime(shooter).max,
+            ShotDamage * BurstShotCount / getFullCycleTime(shooter).min);
     }
 
     /// <summary>
@@ -137,9 +137,9 @@ public class RangedWeaponStats
     /// <returns>The accuracy-adjusted ranged DPS of the weapon.</returns>
     /// <param name="range">The range of the shot.</param>
     /// <param name="shooter">(Optional) The turret or pawn shooting the weapon.</param>
-    public FloatRange GetAdjustedDPS(float range, Thing shooter = null)
+    public FloatRange GetAdjustedDps(float range, Thing shooter = null)
     {
-        return GetRawDPS(shooter as Pawn) * Math.Min(GetAdjustedHitChanceFactor(range, shooter), 1f);
+        return GetRawDps(shooter as Pawn) * Math.Min(GetAdjustedHitChanceFactor(range, shooter), 1f);
     }
 
     /// <summary>

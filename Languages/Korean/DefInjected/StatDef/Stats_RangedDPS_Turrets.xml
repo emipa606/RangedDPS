@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <RangedTurret_DPS.label>원거리 DPS</RangedTurret_DPS.label>
   <RangedTurret_DPS.description>무기와 이 포탑의 사격 정확도를 모두 감안할 때 원거리 전투에서 이 포탑이 가할 수 있는 초당 평균 피해입니다.\n\n폰의 "원거리 DPS" 수치와 동일합니다.\n\n목표물의 엄폐나 방어도를 고려하지 않지만, 엄폐하지 않고 방어가 없는 목표물에 대해서는 정확합니다.</RangedTurret_DPS.description>

@@ -10,7 +10,7 @@ public class StatWorker_RangedShooterDPS : StatWorker_RangedDPSBase
     {
         if (base.ShouldShowFor(req))
         {
-            return req.Thing is Pawn pawn && (GetPawnWeapon(pawn)?.def?.IsRangedWeapon ?? false);
+            return req.Thing is Pawn pawn && (getPawnWeapon(pawn)?.def?.IsRangedWeapon ?? false);
         }
 
         return false;
@@ -29,17 +29,17 @@ public class StatWorker_RangedShooterDPS : StatWorker_RangedDPSBase
         }
 
         var pawn = req.Thing as Pawn;
-        var weaponStats = GetWeaponStats(GetPawnWeapon(pawn));
+        var weaponStats = GetWeaponStats(getPawnWeapon(pawn));
 
         var optimalRange = weaponStats.FindOptimalRange(pawn);
-        return weaponStats.GetAdjustedDPS(optimalRange, pawn).Average;
+        return weaponStats.GetAdjustedDps(optimalRange, pawn).Average;
     }
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense,
         StatRequest optionalReq, bool finalized = true)
     {
         var pawn = optionalReq.Thing as Pawn;
-        var weaponStats = GetWeaponStats(GetPawnWeapon(pawn));
+        var weaponStats = GetWeaponStats(getPawnWeapon(pawn));
 
         var optimalRange = (int)weaponStats.FindOptimalRange(pawn);
 
@@ -55,8 +55,8 @@ public class StatWorker_RangedShooterDPS : StatWorker_RangedDPSBase
         }
 
         var pawn = req.Thing as Pawn;
-        var weaponStats = GetWeaponStats(GetPawnWeapon(pawn));
-        return DPSRangeBreakdown(weaponStats, pawn);
+        var weaponStats = GetWeaponStats(getPawnWeapon(pawn));
+        return DpsRangeBreakdown(weaponStats, pawn);
     }
 
     public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest statRequest)
@@ -67,7 +67,7 @@ public class StatWorker_RangedShooterDPS : StatWorker_RangedDPSBase
         }
     }
 
-    protected static Thing GetPawnWeapon(Pawn pawn)
+    private static Thing getPawnWeapon(Pawn pawn)
     {
         return pawn?.equipment?.Primary;
     }

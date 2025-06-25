@@ -34,7 +34,7 @@ public class StatWorker_RangedWeaponDPS : StatWorker_RangedDPSBase
             weaponStats.AccuracyLong
         }.Max();
 
-        return weaponStats.GetRawDPS().Average * Math.Min(bestAccuracy, 1);
+        return weaponStats.GetRawDps().Average * Math.Min(bestAccuracy, 1);
     }
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense,
@@ -56,6 +56,6 @@ public class StatWorker_RangedWeaponDPS : StatWorker_RangedDPSBase
 
     public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
     {
-        return !ShouldShowFor(req) ? "" : DPSRangeBreakdown(GetWeaponStats(req));
+        return !ShouldShowFor(req) ? "" : DpsRangeBreakdown(GetWeaponStats(req));
     }
 }

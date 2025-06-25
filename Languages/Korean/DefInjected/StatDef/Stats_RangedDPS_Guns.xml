@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <RangedWeapon_AverageDPS.label>평균 원거리 DPS</RangedWeapon_AverageDPS.label>
   <RangedWeapon_AverageDPS.description>최적 사거리의 원거리 전투에서 이 무기가 가할 수 있는 잠재적인 초당 평균 피해입니다.\n\n사격자의 기술이나 목표물의 엄폐와 방어도를 고려하지 않으므로, 실제 값은 더 낮을 것입니다.</RangedWeapon_AverageDPS.description>

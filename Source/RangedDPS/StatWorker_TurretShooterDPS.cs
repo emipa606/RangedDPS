@@ -22,7 +22,7 @@ public class StatWorker_TurretShooterDPS : StatWorker_TurretDPSBase
         RangedWeaponStats weaponStats = GetTurretStats(req);
 
         var optimalRange = weaponStats.FindOptimalRange(turret);
-        return weaponStats.GetAdjustedDPS(optimalRange, turret).Average;
+        return weaponStats.GetAdjustedDps(optimalRange, turret).Average;
     }
 
     public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense,
@@ -47,6 +47,6 @@ public class StatWorker_TurretShooterDPS : StatWorker_TurretDPSBase
         var turret = GetTurret(req);
         RangedWeaponStats weaponStats = GetTurretStats(req);
 
-        return DPSRangeBreakdown(weaponStats, turret);
+        return DpsRangeBreakdown(weaponStats, turret);
     }
 }
