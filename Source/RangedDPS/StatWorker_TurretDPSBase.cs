@@ -13,29 +13,46 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
             return false;
         }
 
+        var weapon = GetTurretWeapon(GetTurret(req));
+        if (weapon == null)
+        {
+            return false;
+        }
+
         // Don't show DPS for unloaded mortars
-        var comp = getTurretWeapon(req).TryGetComp<CompChangeableProjectile>();
+        var comp = weapon.TryGetComp<CompChangeableProjectile>();
         return comp == null || comp.Loaded;
     }
 
-    protected static Building_TurretGun GetTurret(StatRequest req)
+    protected static Building_Turret GetTurret(StatRequest req)
     {
-        if (req.Thing is Building_TurretGun turret)
+        if (req.Thing is Building_Turret turret)
         {
             return turret;
         }
 
-        return (req.Def as ThingDef)?.GetConcreteExample() as Building_TurretGun;
+        return (req.Def as ThingDef)?.GetConcreteExample() as Building_Turret;
     }
 
-    private static Thing getTurretWeapon(StatRequest req)
+    private static Thing GetTurretWeapon(Building_Turret turret)
     {
-        return GetTurret(req).gun;
-    }
+        if (turret == null)
+        {
+            return null;
+        }
 
-    protected static TurretStats GetTurretStats(StatRequest req)
-    {
-        return getTurretStats(GetTurret(req));
+        // Fast-path for vanilla Building_TurretGun, which is the most common case.
+        // It uses a public field, not a property.
+        if (turret is Building_TurretGun turretGun)
+        {
+            return turretGun.gun;
+        }
+
+        // Fallback to reflection for mod compatibility.
+        // The original code used GetProperty, but vanilla uses a field. We check for the field first,
+        // then for a property as some mods might implement it that way.
+        return turret.GetType().GetField("gun")?.GetValue(turret) as Thing ??
+            turret.GetType().GetProperty("gun")?.GetValue(turret) as Thing;
     }
 
     /// <summary>
@@ -43,12 +60,16 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
     ///     Logs an error and returns null if the thing is null.
     /// </summary>
     /// <returns>The stats of the passed-in turret.</returns>
-    /// <param name="turret">The turret to get stats for.</param>
-    private static TurretStats getTurretStats(Building_TurretGun turret)
+    protected static TurretStats GetTurretStats(StatRequest req)
     {
+        var turret = GetTurret(req);
         if (turret != null)
         {
-            return new TurretStats(turret);
+            var weapon = GetTurretWeapon(turret);
+            if (weapon != null)
+            {
+                return new TurretStats(turret, weapon);
+            }
         }
 
         Log.Error("[RangedDPS] Tried to get the ranged weapon stats of a null turret");
