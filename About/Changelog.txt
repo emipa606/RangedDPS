@@ -1,5 +1,8 @@
 # Changelog for RangedDPS
 
+1.6.1 - Better compatibility with turrets that uses do not inherit the Building_TurretGun, thanks to Hanssen0
+
+
 1.6.0 - Mod updated for 1.6 and passed autotests
 
 

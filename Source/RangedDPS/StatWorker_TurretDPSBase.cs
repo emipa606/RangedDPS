@@ -52,7 +52,7 @@ public class StatWorker_TurretDPSBase : StatWorker_RangedDPSBase
         // The original code used GetProperty, but vanilla uses a field. We check for the field first,
         // then for a property as some mods might implement it that way.
         return turret.GetType().GetField("gun")?.GetValue(turret) as Thing ??
-            turret.GetType().GetProperty("gun")?.GetValue(turret) as Thing;
+               turret.GetType().GetProperty("gun")?.GetValue(turret) as Thing;
     }
 
     /// <summary>
