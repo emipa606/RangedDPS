@@ -31,9 +31,9 @@ public class RangedWeaponStats
         cooldown = weapon.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
     }
 
-    protected RangedWeaponStats(Building_TurretGun turret)
+    protected RangedWeaponStats(Building_Turret turret, Thing gun)
     {
-        weapon = turret.gun;
+        weapon = gun;
         shootVerb = getShootVerb(weapon.def);
 
         // Get the damage from the loaded projectile if the weapon is loadable or the default projectile otherwise
