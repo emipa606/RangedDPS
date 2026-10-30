@@ -7,10 +7,9 @@ namespace RangedDPS.StatUtilities;
 
 public class RangedWeaponStats
 {
+    protected readonly int ShotDamage;
     private readonly float cooldown;
     private readonly VerbProperties shootVerb;
-
-    protected readonly int ShotDamage;
     private readonly FloatRange warmup;
     private readonly Thing weapon;
 
@@ -20,7 +19,6 @@ public class RangedWeaponStats
         shootVerb = getShootVerb(weapon.def);
 
         // Get the damage from the loaded projectile if the weapon is loadable or the default projectile otherwise
-        // TODO - check if it's even possible for regular weapons to have this comp
         var projectile = weapon.TryGetComp<CompChangeableProjectile>()?.Projectile?.projectile
                          ?? shootVerb.defaultProjectile?.projectile;
 

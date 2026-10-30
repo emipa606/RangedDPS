@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <StatDef>
+    <defName>RangedTurret_DPS</defName>
+    <workerClass>RangedDPS.StatWorker_TurretShooterDPS</workerClass>
+    <label>ranged DPS</label>
+    <description>Average damage per second this turret can deal in ranged combat, factoring in both the weapon and this turret's shooting accuracy.  This stat is equivalent to the "Ranged DPS" stat on pawns.\n\nThis stat doesn't factor in target defenses like cover and armor, but is accurate for unarmored targets not in cover.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5054</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedTurret_WeaponDPS</defName>
+    <workerClass>RangedDPS.StatWorker_TurretWeaponDPS</workerClass>
+    <label>weapon ranged DPS</label>
+    <description>Average potential damage dealt per second in ranged combat at the optimal range of this turret's weapon, not factoring in the shooting accuracy of the turret mount.  This stat is equivalent to the "Average ranged DPS" stat on ranged weapons.\n\nThis stat doesn't factor in the turret's shooting accuracy or target defenses like cover and armor, so the actual value will be lower.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5053</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedTurret_MaxDPS</defName>
+    <workerClass>RangedDPS.StatWorker_TurretMaxDPS</workerClass>
+    <label>max ranged DPS</label>
+    <description>Maximum potential damage dealt per second in ranged combat, assuming all shots were to hit.  This is the maximum possible DPS you could get out of this turret in a target-rich environment.\n\nThis stat doesn't factor in accuracy or target defenses like cover and armor, so the actual value will be lower.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5052</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedTurret_DamagePerResource</defName>
+    <workerClass>RangedDPS.StatWorker_TurretDamagePerResource</workerClass>
+    <label>damage per resource</label>
+    <description>The average amount of damage this turret can deal for every unit of resource used for ammo or barrel replenishment, including missed shots.  Higher values mean the turret is more resource-efficient at dealing damage.\n\nThis stat refers to the actual amount of raw resources used, not the amount of "barrel durability" used up.  E.g., for a turret that is rearmed with steel, this is how much damage you get out of 1 unit of steel.  It does not account for the resources used to build the turret, only the resources used when the turret shoots.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5051</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedTurret_MaxDamagePerResource</defName>
+    <workerClass>RangedDPS.StatWorker_TurretMaxDamagePerResource</workerClass>
+    <label>max damage per resource</label>
+    <description>The maximum amount of damage this turret can deal for every unit of resource used for ammo or barrel replenishment, assuming all shots were to hit.  Higher values mean the turret is more resource-efficient at dealing damage.  This is the maximum possible efficiency you could get out of this turret in a target-rich environment.\n\nThis stat refers to the actual amount of raw resources used, not the amount of "barrel durability" used up.  E.g., for a turret that is rearmed with steel, this is how much damage you get out of 1 unit of steel.  It does not account for missed shots, so the actual value will be lower.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5050</displayPriorityInCategory>
+  </StatDef>
+</Defs>

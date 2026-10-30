@@ -6,8 +6,8 @@ namespace RangedDPS.StatUtilities;
 
 public class TurretStats(Building_Turret turret, Thing gun) : RangedWeaponStats(turret, gun)
 {
-    private readonly CompRefuelable compRefuelable = turret.TryGetComp<CompRefuelable>();
     public readonly Building_Turret Turret = turret;
+    private readonly CompRefuelable compRefuelable = turret.TryGetComp<CompRefuelable>();
 
     /// <summary>
     ///     Gets a value indicating whether this turret uses fuel (barrel refurbishing, ammo, etc.).

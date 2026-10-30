@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <StatDef>
+    <defName>RangedWeapon_AverageDPS</defName>
+    <workerClass>RangedDPS.StatWorker_RangedWeaponDPS</workerClass>
+    <label>average ranged DPS</label>
+    <description>Average potential damage dealt per second in ranged combat at the optimal range of this weapon.\n\nThis stat doesn't factor in the shooter's skill or target defenses like cover and armor, so the actual value will be lower.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5050</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedWeapon_MaxDPS</defName>
+    <workerClass>RangedDPS.StatWorker_RangedMaxDPS</workerClass>
+    <label>max ranged DPS</label>
+    <description>Maximum possible damage dealt per second in ranged combat, assuming all shots were to hit.  This is the maximum possible DPS you could get out of this gun in a target-rich environment.\n\nThis stat doesn't factor in accuracy or target defenses like cover and armor, so the actual value will be lower.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5051</displayPriorityInCategory>
+  </StatDef>
+  <StatDef>
+    <defName>RangedWeapon_PawnDPS</defName>
+    <workerClass>RangedDPS.StatWorker_RangedShooterDPS</workerClass>
+    <label>ranged DPS</label>
+    <description>Average damage per second this pawn can deal in ranged combat, factoring in both the weapon and this pawn's shooting accuracy.\n\nThis stat doesn't factor in target defenses like cover and armor, but is accurate for unarmored targets not in cover.</description>
+    <category>PawnCombat</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>4051</displayPriorityInCategory>
+  </StatDef>
+</Defs>
